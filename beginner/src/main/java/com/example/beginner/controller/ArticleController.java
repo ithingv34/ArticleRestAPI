@@ -1,6 +1,7 @@
 package com.example.beginner.controller;
 
 import com.example.beginner.dto.ArticleCreateDto;
+import com.example.beginner.dto.ArticleUpdateDto;
 import com.example.beginner.entity.Article;
 import com.example.beginner.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.swing.text.html.Option;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -83,5 +85,24 @@ public class ArticleController {
 
         // 뷰 페이지 설정
         return "articles/edit";
+    }
+
+    @PostMapping("/articles/update")
+    public String update(ArticleUpdateDto form){
+        log.info(form.toString());
+
+        // 1. dto를 entity로 변환한다.
+        Article articleEntity = form.toEntity();
+        log.info(articleEntity.toString());
+
+        // 2. 엔티티를 DB로 저장한다
+        // 2-1. DB에서 기존 데이터를 가져온다.
+        Article target = articleRepository.findById(articleEntity.getId()).orElse(null);
+
+        // 2-2 기존 데이터에 있다면 값을 갱신한다.
+        if (target != null) {
+            articleRepository.save(articleEntity);
+        }
+        return "redirect:/articles/" + articleEntity.getId();
     }
 }

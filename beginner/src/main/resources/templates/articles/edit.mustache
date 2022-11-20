@@ -1,7 +1,8 @@
 {{>layouts/header}}
 
 {{#article}}
-<form action="" method="POST" class="container">
+<form action="/articles/update" method="POST" class="container">
+    <input name="id" type="hidden" value="{{id}}"/>
     <div class="mb-3">
         <label class="form-label">Title</label>
         <input type="text" class="form-control" name="title" value="{{article.title}}">
