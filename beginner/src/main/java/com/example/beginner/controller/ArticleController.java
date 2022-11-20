@@ -8,9 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.swing.text.html.Option;
 import java.util.Iterator;
@@ -88,7 +90,7 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/update")
-    public String update(ArticleUpdateDto form){
+    public String update(ArticleUpdateDto form) {
         log.info(form.toString());
 
         // 1. dto를 entity로 변환한다.
@@ -104,5 +106,22 @@ public class ArticleController {
             articleRepository.save(articleEntity);
         }
         return "redirect:/articles/" + articleEntity.getId();
+    }
+
+    @GetMapping("/articles/{id}/delete")
+    public String delete(@PathVariable Long id, RedirectAttributes rttr){
+        log.info("삭제 요청이 들어왔습니다.");
+
+        // 1. 삭제 대상을 가져온다.
+        Article target = articleRepository.findById(id).orElse(null);
+        log.info(target.toString());
+
+        // 2. 대상을 삭제한다.
+        if (target != null) {
+            articleRepository.delete(target);
+            rttr.addFlashAttribute("msg", "Deletion successfully completed");
+        }
+        // 3. 결과 페이지로 리다이렉트를 한다.
+        return "redirect:/articles";
     }
 }
