@@ -1,23 +1,18 @@
 package com.example.beginner.controller;
 
-import com.example.beginner.dto.ArticleCreateDto;
-import com.example.beginner.dto.ArticleUpdateDto;
+import com.example.beginner.dto.ArticleForm;
 import com.example.beginner.entity.Article;
 import com.example.beginner.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.swing.text.html.Option;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @Slf4j
@@ -69,7 +64,7 @@ public class ArticleController {
     }
 
     @PostMapping("articles/create")
-    public String createArticle(ArticleCreateDto form){
+    public String createArticle(ArticleForm form){
         log.info(form.toString());
 
         // dto -> entity
@@ -96,7 +91,7 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/update")
-    public String update(ArticleUpdateDto form) {
+    public String update(ArticleForm form) {
         log.info(form.toString());
 
         // 1. dto를 entity로 변환한다.
