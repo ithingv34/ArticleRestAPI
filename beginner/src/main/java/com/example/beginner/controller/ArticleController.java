@@ -26,6 +26,12 @@ public class ArticleController {
     @Autowired // 스프링 부트가 미리 생성해놓은 객체를 가지고 자동 연결
     private ArticleRepository articleRepository;
 
+    @GetMapping("/hello")
+    public String hello(){
+        return "hello";
+    }
+
+
     @GetMapping("/articles/new")
     public String newArticleForm(){
         return "articles/new";
