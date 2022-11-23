@@ -13,6 +13,9 @@ repositories {
 }
 
 dependencies {
+
+	// Swagger
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	// Lombok
 	compileOnly 'org.projectlombok:lombok:1.18.24'
 	annotationProcessor 'org.projectlombok:lombok:1.18.24'
