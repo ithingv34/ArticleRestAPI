@@ -15,8 +15,4 @@ docker run -p 8000:8000 app
 - Swagger
   - http://127.0.0.1:8000/swagger-ui/index.html
 
-GET /api/articles/{article_id}
-GET /api/articles/
-POST /api/articles/
-PATCH /api/articles/{article_id}
-DELETE /api/articles/{article_id}
+<img src="./asset/img/capture.png"/>
