@@ -15,4 +15,4 @@ docker run -p 8000:8000 app
 - Swagger
   - http://127.0.0.1:8000/swagger-ui/index.html
 
-<img src="./asset/img/capture.png"/>
+<img src="./beginner/asset/img/capture.png"/>
