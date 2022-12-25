@@ -3,7 +3,7 @@
 ## Usage
 
 ```
-# docker image 생성
+# docker image ㅂㅣㄹㄷㅡ
 docker build -t app .
 
 # docker 서버 실행
